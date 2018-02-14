@@ -11,19 +11,19 @@ namespace LinkPlus.BusinessLayer
     public class CustomerLayer : ICustomerLayer
     {
         private readonly UnitOfWork unitOfWork;
-        private readonly IRepository<Order> Repository;
+        private readonly IRepository<Customer> Repository;
 
         //In case we want to use DI
         public CustomerLayer(UnitOfWork work)
         {
             unitOfWork = work;
-            Repository = unitOfWork.Repository<Order>();
+            Repository = unitOfWork.Repository<Customer>();
         }
         public CustomerLayer()
         {
-            Repository = new UnitOfWork(new SqlDbContext()).Repository<Order>();
+            Repository = new UnitOfWork(new SqlDbContext()).Repository<Customer>();
         }
-        public Order AddCustomer(Order customer)
+        public Customer AddCustomer(Customer customer)
         {
             //here we make checks if everything is ok with the Customer model before saving to db
             Repository.Add(customer);
@@ -31,7 +31,7 @@ namespace LinkPlus.BusinessLayer
             return customer;
         }
 
-        public Order GetCustomer(int CustomerId)
+        public Customer GetCustomer(int CustomerId)
         {
             var customer = Repository.Get(c => c.CustomerId == CustomerId);
             if(customer == null)
@@ -41,7 +41,7 @@ namespace LinkPlus.BusinessLayer
             return customer;
         }
 
-        public IList<Order> GetCustomers()
+        public IList<Customer> GetCustomers()
         {
             return Repository.GetAll().ToList();
         }

@@ -4,9 +4,9 @@ namespace LinkPlus.BusinessLayer
 {
     public interface ICustomerLayer
     {
-        Order GetCustomer(int CustomerId);
-        Order AddCustomer(Order customer);
-        IList<Order> GetCustomers();
+        Customer GetCustomer(int CustomerId);
+        Customer AddCustomer(Customer customer);
+        IList<Customer> GetCustomers();
         bool RemoveCustomer(int CustomerId);
     }
 }
